@@ -143,6 +143,84 @@
       text-align: center;
     }
 
+    .guide-wrap {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .guide-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(160deg, rgba(18, 24, 41, 0.94), rgba(11, 16, 32, 0.9));
+      box-shadow: var(--shadow);
+      padding: 16px;
+      animation: rise-in 0.8s ease-out;
+    }
+
+    .guide-title {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+      font-weight: 700;
+    }
+
+    .guide-desc {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .kv {
+      display: grid;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .kv-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .kv-key {
+      color: #dbe6ff;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .kv-val {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .model-answer {
+      margin-top: 8px;
+      border: 1px solid #356092;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(15, 23, 48, 0.98), rgba(14, 36, 52, 0.9));
+      padding: 14px;
+    }
+
+    .model-answer h3 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .model-answer p {
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .model-answer .label {
+      color: #eef5ff;
+      font-weight: 700;
+    }
+
     @keyframes rise-in {
       from {
         transform: translateY(10px);
@@ -158,13 +236,17 @@
       .video-grid {
         grid-template-columns: 1fr;
       }
+
+      .kv-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <main class="container">
     <section class="hero">
-      <h1>Video Viewer</h1>
+      <h1>🏙️ DUP User App Demo Video</h1>
       <p class="subtitle">Watch the available videos below. Use full-screen mode for a better experience.</p>
     </section>
 
@@ -196,6 +278,114 @@
         <div class="meta">
           <span>Local file playback</span>
           <a href="pt2.mp4" download style="color: var(--accent); text-decoration: none;">Download</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="guide-wrap" aria-label="Screen Guide">
+      <article class="guide-card">
+        <h2 class="guide-title">1) App Overview & Input</h2>
+        <p class="guide-desc">Step where a user uploads a reconstruction notice and enters a question.</p>
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">App Title</div>
+            <div class="kv-val">District Unit Plan AI Answer Generator (지구단위계획 AI 답변 생성기)</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Uploaded File</div>
+            <div class="kv-val">송파미성아파트 재건축_신설.pdf (Songpa Misung Apartment Reconstruction_New.pdf)</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">User Question</div>
+            <div class="kv-val">KO: "우리집 재건축에 관한 고시문이라고 하는데, 여기서 내가 눈여겨봐야 할 건축물에 관한 정보 같은 것들에 대해서 설명해주세요."<br>EN: "This is a public notice about my house reconstruction. Please explain the information regarding buildings that I should keep an eye on."</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h2 class="guide-title">2) Generated Model Answer</h2>
+        <p class="guide-desc">Core architectural regulations extracted by AI from the uploaded document.</p>
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">Height Limit</div>
+            <div class="kv-val">KO: 최고 32층 이하 (124.95m 이하).<br>EN: Maximum 32 floors or less (under 124.95m).</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Floor Area Ratio (FAR)</div>
+            <div class="kv-val">KO: 법정상한 294.95% 이하, 실제 적용 230% 이하.<br>EN: Statutory upper limit 294.95%, actual applied FAR 230%.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Small Housing Units</div>
+            <div class="kv-val">KO: 전체 용적률의 일정 비율을 60㎡ 이하 소형주택으로 구성.<br>EN: A certain percentage of total floor area must be small units under 60㎡.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Public Facilities</div>
+            <div class="kv-val">KO: 단지 내 3.5m 폭 공공보행통로 계획.<br>EN: A 3.5m-wide public pedestrian path is planned within the complex.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h2 class="guide-title">3) Summary & Extracted Tables</h2>
+        <p class="guide-desc">Section where structured document data is summarized in table form.</p>
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">Summary</div>
+            <div class="kv-val">KO: 서울특별시 송파구 송파동 161번지 일대의 미성아파트 재건축 정비구역 지정 및 지구단위계획 결정 내용.<br>EN: Reconstruction area designation and district unit plan for Misung Apt, 161 Songpa-dong, Songpa-gu, Seoul.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Area</div>
+            <div class="kv-val">KO: 정비구역 면적 약 28,959.7㎡.<br>EN: Total site area is approximately 28,959.7㎡.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Facility Plan</div>
+            <div class="kv-val">KO: 근린생활시설, 어린이집, 경로당, 작은도서관 포함.<br>EN: Includes neighborhood facilities, daycare centers, senior centers, and small libraries.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h2 class="guide-title">4) Quantitative Conditions</h2>
+        <p class="guide-desc">Detailed metrics extracted and displayed for compliance checking.</p>
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">Building-to-Land Ratio</div>
+            <div class="kv-val">KO: 50% 이하.<br>EN: Below 50%.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Green Space</div>
+            <div class="kv-val">KO: 생태면적률 30.0% 확보.<br>EN: Securing 30.0% green/ecological area ratio.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Sunlight Exposure</div>
+            <div class="kv-val">KO: 9시~15시 사이 연속 2시간 일조 확보.<br>EN: Securing 2 hours of continuous sunlight between 9 AM and 3 PM.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="guide-card">
+        <h2 class="guide-title">5) Causal Pairs / Issues & Changes</h2>
+        <p class="guide-desc">Explains why the plan was adjusted and what issue each change resolves.</p>
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">Skyline</div>
+            <div class="kv-val">KO: 주변 경관과 조화를 위해 층수 조정.<br>EN: Number of floors adjusted to harmonize with the surrounding landscape.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Public Contribution</div>
+            <div class="kv-val">KO: 임대주택 건설 등으로 용적률 인센티브 획득.<br>EN: FAR incentives obtained through rental housing and related public contributions.</div>
+          </div>
+        </div>
+
+        <div class="model-answer">
+          <h3>🏗️ Reconstruction Project: Key Architectural Information</h3>
+          <p><span class="label">Height Limit</span><br>KO: 최고 32층 이하 (124.95m 이하)로 계획되어 주변 경관과의 조화를 고려한 설계가 중요합니다.<br>EN: The height is capped at 32 stories (under 124.95m). It is crucial to design the structures in harmony with the surrounding landscape.</p>
+          <p><span class="label">Floor Area Ratio (FAR)</span><br>KO: 법적상한용적률은 294.95%이지만, 실제 적용되는 용적률은 230% 이하입니다.<br>EN: While the statutory upper limit for FAR is 294.95%, the actual applied FAR is 230% or less.</p>
+          <p><span class="label">Small Housing Unit Construction</span><br>KO: 법적상한용적률과 정비계획 용적률의 차이 중 50% 이상을 60㎡ 이하 소형주택으로 건설해야 합니다. (약 9,404.66㎡ 이상)<br>EN: At least 50% of the difference between the statutory upper limit and designated FAR must be allocated to small housing units (60㎡ or smaller), about 9,404.66㎡ or more.</p>
+          <p><span class="label">Building-to-Land Ratio</span><br>KO: 50% 이하로 제한됩니다.<br>EN: The building-to-land ratio is restricted to 50% or less.</p>
+          <p><span class="label">Sunlight Access Rights</span><br>KO: 9시~15시 사이 연속 2시간 일조를 위한 배치 계획이 필요합니다.<br>EN: The building layout must ensure at least two hours of continuous sunlight between 9:00 AM and 3:00 PM.</p>
+          <p><span class="label">Skyline</span><br>KO: 문화재 현상변경구역 및 적정 스카이라인을 고려해 법적상한용적률을 294.95%로 하향 조정하고, 오금로변 주동 층수를 15층에서 12층으로 조정했습니다.<br>EN: To account for historical preservation areas and maintain an appropriate skyline, the statutory FAR was lowered to 294.95%, and building height along Ogeum-ro was reduced from 15 to 12 stories.</p>
+          <p><span class="label">Layout Plan</span><br>KO: 공공보행통로는 3.5m 폭으로 계획되며 보행 연결성을 확보해야 합니다.<br>EN: A public pedestrian path with a width of 3.5m is planned, and the design must prioritize pedestrian connectivity.</p>
         </div>
       </article>
     </section>
