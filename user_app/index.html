@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User App Video Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #131a33;
+      --card: #121829cc;
+      --line: #2d3d74;
+      --text: #f1f5ff;
+      --muted: #a9b4d8;
+      --accent: #49dcb1;
+      --accent-2: #6fb5ff;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Noto Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, #24396f 0%, transparent 45%),
+        radial-gradient(900px 700px at 85% 0%, #1d6a66 0%, transparent 40%),
+        linear-gradient(145deg, #090d1a 0%, #0f1630 45%, #0c1329 100%);
+      min-height: 100vh;
+      padding: 28px 16px 40px;
+    }
+
+    .container {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      background: linear-gradient(140deg, #121b36 0%, #0f1830 70%, #10253d 100%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      animation: rise-in 0.7s ease-out;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(73, 220, 177, 0.25), transparent 65%);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    }
+
+    .video-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .video-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      animation: rise-in 0.75s ease-out;
+    }
+
+    .video-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .video-title {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: #021116;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #364c8d;
+      background: #02050f;
+    }
+
+    .meta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @keyframes rise-in {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Video Viewer</h1>
+      <p class="subtitle">Watch the available videos below. Use full-screen mode for a better experience.</p>
+    </section>
+
+    <section class="video-grid" aria-label="Video list">
+      <article class="video-card">
+        <div class="video-head">
+          <h2 class="video-title">PT1 Video</h2>
+          <span class="chip">pt1.mp4</span>
+        </div>
+        <video controls preload="metadata">
+          <source src="pt1.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="meta">
+          <span>Local file playback</span>
+          <a href="pt1.mp4" download style="color: var(--accent); text-decoration: none;">Download</a>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="video-head">
+          <h2 class="video-title">PT2 Video</h2>
+          <span class="chip">pt2.mp4</span>
+        </div>
+        <video controls preload="metadata">
+          <source src="pt2.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="meta">
+          <span>Local file playback</span>
+          <a href="pt2.mp4" download style="color: var(--accent); text-decoration: none;">Download</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer-note">If a video does not play, verify the file exists in the same folder as this page.</p>
+  </main>
+</body>
+</html>
